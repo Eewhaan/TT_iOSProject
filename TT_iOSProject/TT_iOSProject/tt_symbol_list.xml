@@ -1,0 +1,191 @@
+i<?xml version="1.0" encoding="utf-8" ?>
+<Result xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" errorNumber="0" xmlns="urn:schemas-teletrader-com:mb">
+    <SymbolList totalRecords="62" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Symbols">
+        <Symbol id="tts-394917" name="DOW JONES INDUSTRIAL AVERAGE INDEX" tickerSymbol="DJI" isin="US2605661048" currency="XXP" stockExchangeName="Indices DJ" decorativeName="DJIndu">
+            <Quote last="25720.66" high="25800.30" low="25518.05" bid="25539.44" ask="25822.19" volume="248068144" dateTime="2019-06-06T22:20:01" change="181.09" changePercent="0.709057" />
+        </Symbol>
+        <Symbol id="tts-898974" name="S&amp;P 500 INDEX" tickerSymbol="INX" isin="US78378X1072" currency="XXP" stockExchangeName="Indices S&amp;P Basic" decorativeName="SP500">
+            <Quote last="2843.49" high="2852.10" low="2822.45" bid="2784.67" ask="2874.68" volume="1949547652" dateTime="2019-06-06T22:20:01" change="17.34" changePercent="0.613556" />
+        </Symbol>
+        <Symbol id="tts-751307" name="NASDAQ 100 INDEX" tickerSymbol="NDX.X" isin="US6311011026" currency="XXP" stockExchangeName="Indices Nasdaq" decorativeName="Nasdaq100">
+            <Quote last="7275.927" high="7293.222" low="7201.586" volume="564902980" dateTime="2019-06-06T22:30:00" change="55.024" changePercent="0.762010" />
+        </Symbol>
+        <Symbol id="tts-76593427" name="UK 100 Index" tickerSymbol="UK100" isin="GB0001383545" currency="XXP" stockExchangeName="JFD Brokers Indices" decorativeName="TT_UK100">
+            <Quote last="7322.25" high="7322.75" low="7259.77" bid="7321.75" ask="7322.75" volume="10808" dateTime="2019-06-07T12:33:23" change="58.40" changePercent="0.803981" />
+        </Symbol>
+        <Symbol id="tts-76593515" name="EU Stocks 50 Index" tickerSymbol="STOXX50" isin="EU0009658145" currency="XXP" stockExchangeName="JFD Brokers Indices" decorativeName="TT_STOXX50">
+            <Quote last="3377.00" high="3378.00" low="3343.50" bid="3376.00" ask="3378.00" volume="781" dateTime="2019-06-07T12:32:57" change="33.50" changePercent="1.001944" />
+        </Symbol>
+        <Symbol id="tts-514562" name="DAX" tickerSymbol="DAX" isin="DE0008469008" currency="XXP" stockExchangeName="Indices Xetra" decorativeName="DAX">
+            <Quote last="12041.35" high="12060.65" low="11999.39" volume="771149" dateTime="2019-06-07T12:18:23" change="88.21" changePercent="0.737965" />
+        </Symbol>
+        <Symbol id="tts-76593168" name="Germany 30 Index" tickerSymbol="DE30" isin="DE0008469008" currency="XXP" stockExchangeName="JFD Brokers Indices" decorativeName="TT_DE30">
+            <Quote last="12052.40" high="12060.90" low="11958.61" bid="12051.90" ask="12052.90" volume="24441" dateTime="2019-06-07T12:33:23" change="83.15" changePercent="0.694697" />
+        </Symbol>
+        <Symbol id="tts-2325578" name="CAC 40" tickerSymbol="PX1" isin="FR0003500008" currency="XXP" stockExchangeName="Market Indices Euronext" decorativeName="CAC40">
+            <Quote last="5353.02" high="5360.26" low="5299.71" dateTime="2019-06-07T12:18:15" change="74.59" changePercent="1.413110" />
+        </Symbol>
+        <Symbol id="tts-1055304" name="IBEX 35." tickerSymbol="INDI" isin="ES0SI0000005" currency="XXP" stockExchangeName="Indices Spanien" decorativeName="IBEX35">
+            <Quote last="9169.20" high="9246.20" low="9136.70" bid="0.00" ask="0.00" volume="212720" dateTime="2019-06-06T00:00:00" />
+        </Symbol>
+        <Symbol id="tts-51399127" name="DB Italy 40 Index" tickerSymbol="ISPMIB" isin="IT0003465736" currency="EUR" stockExchangeName="Deutsche Bank Indizes" decorativeName="DBInd_ISPMIB">
+            <Quote last="20375.00" high="20380.00" low="20155.00" bid="20375.00" dateTime="2019-06-07T12:33:02" change="230.00" changePercent="1.141723" />
+        </Symbol>
+        <Symbol id="tts-382582" name="AEX-INDEX" tickerSymbol="AEX" isin="NL0000000107" currency="XXP" stockExchangeName="Market Indices Euronext" decorativeName="AEX">
+            <Quote last="549.75" high="550.32" low="545.99" dateTime="2019-06-07T12:18:15" change="5.43" changePercent="0.997575" />
+        </Symbol>
+        <Symbol id="tts-383130" name="BEL 20" tickerSymbol="BEL20" isin="BE0389555039" currency="XXP" stockExchangeName="Market Indices Euronext" decorativeName="BEL20">
+            <Quote last="3464.90" high="3469.86" low="3446.61" dateTime="2019-06-07T12:18:15" change="24.53" changePercent="0.713005" />
+        </Symbol>
+        <Symbol id="tts-18500435" name="XCSE:OMX Stockholm 30 Index" tickerSymbol="OMXS30" isin="SE0000337842" currency="XXP" stockExchangeName="Indices Nasdaq" decorativeName="OMXStockholm30">
+            <Quote last="1561.491" high="1564.159" low="1543.374" dateTime="2019-06-07T12:18:23" change="19.487" changePercent="1.263745" />
+        </Symbol>
+        <Symbol id="tts-675717" name="Swiss Market Index SMI Price" tickerSymbol="SMI" isin="CH0009980894" currency="XXP" stockExchangeName="Indices SIX" decorativeName="SMI">
+            <Quote last="9736.7700" high="9746.6300" low="9712.8500" bid="9735.1000" ask="9737.9800" dateTime="2019-06-07T12:18:17" change="54.4800" changePercent="0.562677" />
+        </Symbol>
+        <Symbol id="tts-51399534" name="DB Japan 225 Index" tickerSymbol="IN225" currency="EUR" stockExchangeName="Deutsche Bank Indizes" decorativeName="DBInd_IN225">
+            <Quote last="20980.00" high="20985.00" low="20815.00" bid="20980.00" ask="20980.00" dateTime="2019-06-07T12:30:13" change="135.00" changePercent="0.647637" />
+        </Symbol>
+        <Symbol id="tts-4903709" name="Hang Seng Idx." tickerSymbol="HSI.X" isin="HK0000004322" currency="XXP" stockExchangeName="Indices Hang Seng" decorativeName="HangSeng">
+            <Quote last="26965.28" high="26984.02" low="26837.67" dateTime="2019-06-06T10:08:40" />
+        </Symbol>
+        <Symbol id="tts-18852107" name="KOSPI Composite Index" tickerSymbol="KOSPI" isin="KRD020020008" currency="XXP" stockExchangeName="Indices Korea" decorativeName="KOSPI">
+            <Quote last="2072.33" high="2081.16" low="2057.97" volume="368392" dateTime="2019-06-07T11:00:00" change="3.22" changePercent="0.155622" />
+        </Symbol>
+        <Symbol id="tts-103627027" name="Nifty 50" tickerSymbol="NIFTY50" isin="XC0006013996" currency="XXP" stockExchangeName="National SE of India" decorativeName="NIFTY50">
+            <Quote last="11870.65" high="11897.50" low="11769.50" dateTime="2019-06-07T12:18:23" change="26.90" changePercent="0.227124" />
+        </Symbol>
+        <Symbol id="tts-11003113" name="S&amp;P/ASX 200" tickerSymbol="XJO" isin="XC0006013624" currency="XXP" stockExchangeName="Indices ASX" decorativeName="ASX200">
+            <Quote last="6443.90" high="6443.90" low="6383.00" dateTime="2019-06-07T00:00:00" change="60.90" changePercent="0.954097" />
+        </Symbol>
+        <Symbol id="tts-30380052" name="U.S. Treasuries 5 Year" tickerSymbol="UST5YEAR" currency="USD" stockExchangeName="U.S. Treasury Yields" decorativeName="UST5YEAR">
+            <Quote last="1.88" high="1.88" low="1.88" bid="0.00" ask="0.00" dateTime="2019-06-06T00:00:00" change="0.02" changePercent="1.075269" />
+        </Symbol>
+        <Symbol id="tts-30380053" name="U.S. Treasuries 10 Year" tickerSymbol="UST10YEAR" currency="USD" stockExchangeName="U.S. Treasury Yields" decorativeName="UST10YEAR">
+            <Quote last="2.12" high="2.12" low="2.12" bid="0.00" ask="0.00" dateTime="2019-06-06T00:00:00" change="0.00" changePercent="0.000000" />
+        </Symbol>
+        <Symbol id="tts-949843" name="EUR/USD Spot" tickerSymbol="EURUSD" isin="EU0009652759" currency="USD" stockExchangeName="Forex International" decorativeName="EURUSD_FXDirekt">
+            <Quote last="1.12619" high="1.12799" low="1.12514" bid="1.12617" ask="1.12620" volume="15615" dateTime="2019-06-07T12:33:21" change="-0.00139" changePercent="-0.123273" />
+        </Symbol>
+        <Symbol id="tts-949828" name="EUR/GBP Spot" tickerSymbol="EURGBP" isin="EU0009653088" currency="GBP" stockExchangeName="Forex International" decorativeName="EURGBP_FXDirekt">
+            <Quote last="0.88597" high="0.88874" low="0.88497" bid="0.88586" ask="0.88608" volume="16373" dateTime="2019-06-07T12:33:21" change="-0.00228" changePercent="-0.257246" />
+        </Symbol>
+        <Symbol id="tts-949850" name="GBP/USD Spot" tickerSymbol="GBPUSD" isin="GB0031973075" currency="USD" stockExchangeName="Forex International" decorativeName="GBPUSD_FXDirekt">
+            <Quote last="1.27113" high="1.27275" low="1.26889" bid="1.27102" ask="1.27124" volume="18485" dateTime="2019-06-07T12:33:19" change="0.00166" changePercent="0.130763" />
+        </Symbol>
+        <Symbol id="tts-949825" name="EUR/CHF Spot" tickerSymbol="EURCHF" isin="EU0009654078" currency="CHF" stockExchangeName="Forex International" decorativeName="EURCHF_FXDirekt">
+            <Quote last="1.12007" high="1.12070" low="1.11702" bid="1.12004" ask="1.12010" volume="16325" dateTime="2019-06-07T12:33:22" change="0.00224" changePercent="0.200388" />
+        </Symbol>
+        <Symbol id="tts-949852" name="USD/CHF Spot" tickerSymbol="USDCHF" isin="XC0009652816" currency="CHF" stockExchangeName="Forex International" decorativeName="USDCHF_FXDirekt">
+            <Quote last="0.99448" high="0.99498" low="0.99092" bid="0.99437" ask="0.99459" volume="15632" dateTime="2019-06-07T12:33:22" change="0.00313" changePercent="0.315731" />
+        </Symbol>
+        <Symbol id="tts-949860" name="USD/JPY Spot" tickerSymbol="USDJPY" isin="XC0009659910" currency="JPY" stockExchangeName="Forex International" decorativeName="USDJPY_FXDirekt">
+            <Quote last="108.5950" high="108.6130" low="108.3230" bid="108.5850" ask="108.6050" volume="21863" dateTime="2019-06-07T12:33:19" change="0.1870" changePercent="0.172496" />
+        </Symbol>
+        <Symbol id="tts-949819" name="AUD/USD Spot" tickerSymbol="AUDUSD" isin="XC000A0E4TC6" currency="USD" stockExchangeName="Forex International" decorativeName="AUDUSD_FXDirekt">
+            <Quote last="0.69669" high="0.69821" low="0.69642" bid="0.69658" ask="0.69679" volume="20652" dateTime="2019-06-07T12:33:23" change="-0.00101" changePercent="-0.144047" />
+        </Symbol>
+        <Symbol id="tts-949851" name="USD/CAD Spot" tickerSymbol="USDCAD" isin="XC000A0AEM51" currency="CAD" stockExchangeName="Forex International" decorativeName="USDCAD_FXDirekt">
+            <Quote last="1.33528" high="1.33681" low="1.33459" bid="1.33517" ask="1.33539" volume="16045" dateTime="2019-06-07T12:33:22" change="-0.00092" changePercent="-0.068852" />
+        </Symbol>
+        <Symbol id="tts-2662500" name="NZD/USD Spot" tickerSymbol="NZDUSD" isin="XC000A0G85A0" currency="USD" stockExchangeName="Forex International" decorativeName="NZDUSD_FXDirekt">
+            <Quote last="0.66198" high="0.66269" low="0.66143" bid="0.66186" ask="0.66209" volume="16862" dateTime="2019-06-07T12:33:22" change="-0.00032" changePercent="-0.048317" />
+        </Symbol>
+        <Symbol id="tts-76592947" name="USD/RUB Spot" tickerSymbol="USDRUB" currency="RUB" stockExchangeName="Forex JFD Brokers" decorativeName="TT_USDRUB">
+            <Quote last="65.06794" high="65.15283" low="64.92297" bid="65.06277" ask="65.07311" volume="7470" dateTime="2019-06-07T12:33:19" change="-0.05603" changePercent="-0.086036" />
+        </Symbol>
+        <Symbol id="tts-76174204" name="BTC/EUR" tickerSymbol="BTCEUR" isin="XTTBTCEUREXS" currency="EUR" stockExchangeName="Bitstamp" decorativeName="BTCEUR">
+            <Quote last="7093.0000" high="7134.9000" low="6880.6000" bid="7089.4000" ask="7102.3600" volume="568.55238985" dateTime="2019-06-07T12:33:21" change="178.5800" changePercent="2.582718" />
+        </Symbol>
+        <Symbol id="tts-75667213" name="BTC/USD" tickerSymbol="BTCUSD" isin="XTTBTCUSDEXS" currency="USD" stockExchangeName="Bitstamp" decorativeName="BTCUSD">
+            <Quote last="7977.9800" high="8046.2300" low="7758.9300" bid="7976.9500" ask="7980.1800" volume="3764.26626218" dateTime="2019-06-07T12:33:19" change="171.9100" changePercent="2.202261" />
+        </Symbol>
+        <Symbol id="tts-153715924" name="BCH/USD" tickerSymbol="BCHUSD" isin="XTTBCHUSDEXS" currency="UNB" stockExchangeName="BITFINEX" decorativeName="BCHUSD_Bitfinex">
+            <Quote last="399.68000" high="403.32000" low="391.66000" bid="398.57000" ask="398.89000" volume="3112.38077559" dateTime="2019-06-07T12:26:45" change="1.21000" changePercent="0.303662" />
+        </Symbol>
+        <Symbol id="tts-153715922" name="BSV/USD" tickerSymbol="BSVUSD" isin="XTTBSVUSDEXS" currency="UNB" stockExchangeName="BITFINEX" decorativeName="BSVUSD_Bitfinex">
+            <Quote last="197.63000" high="207.20000" low="192.19000" bid="197.03000" ask="197.68000" volume="12438.35256353" dateTime="2019-06-07T12:32:47" change="-0.67000" changePercent="-0.337872" />
+        </Symbol>
+        <Symbol id="tts-156227444" name="F BTC 6/19" tickerSymbol="BTC" isin="XFTTBTCCMEGL" currency="USD" stockExchangeName="CME GLOBEX" decorativeName="BTCFuture_CME">
+            <Quote last="8010.0000" high="8085.0000" low="7740.0000" bid="8020.0000" ask="8030.0000" volume="1487" dateTime="2019-06-07T12:19:07" change="295.0000" changePercent="3.823720" />
+        </Symbol>
+        <Symbol id="tts-78738373" name="Gold US Dollars per Ounce Spot Prices" tickerSymbol="XAUUSD" isin="XC0009655157" currency="USD" stockExchangeName="Precious Metals" decorativeName="TT_GOLD">
+            <Quote last="1333.31" high="1336.16" low="1330.37" bid="1333.22" ask="1333.41" volume="27519" dateTime="2019-06-07T12:33:21" change="-2.11" changePercent="-0.158002" />
+        </Symbol>
+        <Symbol id="tts-78738433" name="Silver US Dollars per Ounce Spot Price" tickerSymbol="XAGUSD" isin="XC0009653103" currency="USD" stockExchangeName="Precious Metals" decorativeName="TT_SILVER">
+            <Quote last="14.90" high="14.96" low="14.86" bid="14.89" ask="14.91" volume="12914" dateTime="2019-06-07T12:33:21" change="0.00" changePercent="0.021482" />
+        </Symbol>
+        <Symbol id="tts-78738434" name="Platinum US Dollars per Ounce Spot Price" tickerSymbol="XPTUSD" isin="XC0009665545" currency="USD" stockExchangeName="Precious Metals" decorativeName="TT_PLATIN">
+            <Quote last="802.99" high="806.42" low="801.30" bid="802.03" ask="803.95" volume="7420" dateTime="2019-06-07T12:33:12" change="-1.55" changePercent="-0.193029" />
+        </Symbol>
+        <Symbol id="tts-78738435" name="Palladium US Dollars per Ounce Spot Price" tickerSymbol="XPDUSD" isin="XC0009665529" currency="USD" stockExchangeName="Precious Metals" decorativeName="TT_PALLADIUM">
+            <Quote last="1350.32" high="1357.27" low="1346.02" bid="1348.37" ask="1352.26" volume="2275" dateTime="2019-06-07T12:33:11" change="-2.92" changePercent="-0.215779" />
+        </Symbol>
+        <Symbol id="tts-14497666" name="RO Copper - Grade A USD 3 Months" tickerSymbol="ROCUDWZ" isin="XD0014454033" currency="USD" stockExchangeName="LME" decorativeName="COPPER3M">
+            <Quote last="5808.00" high="5825.00" low="5808.00" dateTime="2019-06-06T00:00:00" change="1.00" changePercent="0.017221" />
+        </Symbol>
+        <Symbol id="tts-73331421" name="F WBS 7/19" tickerSymbol="WBS" isin="XC000A0G9CM8" currency="USD" stockExchangeName="ICE Europe" decorativeName="WTI-OIL_ICE">
+            <Quote last="53.13" high="53.86" low="53.02" bid="53.12" ask="53.14" volume="8243" dateTime="2019-06-07T12:23:03" change="0.03" changePercent="0.056497" />
+        </Symbol>
+        <Symbol id="tts-67373601" name="F BRN 8/19" tickerSymbol="BRN" isin="XC0009677409" currency="USD" stockExchangeName="ICE Europe" decorativeName="BRENT-OIL_ICE">
+            <Quote last="62.28" high="63.12" low="62.10" bid="62.27" ask="62.29" volume="69059" dateTime="2019-06-07T12:23:14" change="0.05" changePercent="0.080347" />
+        </Symbol>
+        <Symbol id="tts-73994115" name="F GAS 6/19" tickerSymbol="GAS" isin="XC0009677813" currency="USD" stockExchangeName="ICE Europe" decorativeName="GASOIL_ICE">
+            <Quote last="553.75" high="560.25" low="552.75" bid="553.50" ask="553.75" volume="10607" dateTime="2019-06-07T12:22:49" change="-1.00" changePercent="-0.180261" />
+        </Symbol>
+        <Symbol id="tts-97840595" name="F UHO 7/19" tickerSymbol="UHO" currency="USD" stockExchangeName="ICE Europe" decorativeName="HEATING-OIL_ICE">
+            <Quote last="1.8027" high="1.8218" low="1.7995" bid="1.8025" ask="1.8030" volume="624" dateTime="2019-06-07T12:22:32" change="-0.0022" changePercent="-0.121890" />
+        </Symbol>
+        <Symbol id="tts-67373636" name="F GWM 7/19" tickerSymbol="GWM" isin="US12573E1010" currency="GBX" stockExchangeName="ICE Europe" decorativeName="NATURAL-GAS_ICE">
+            <Quote last="28.400" high="28.870" low="27.500" bid="28.380" ask="28.500" volume="4380" dateTime="2019-06-07T12:18:57" change="1.260" changePercent="4.642594" />
+        </Symbol>
+        <Symbol id="tts-132264576" name="F LE 6/19" tickerSymbol="LE" isin="XFTTLECMEGLB" currency="USX" stockExchangeName="CME GLOBEX" decorativeName="LiveCattleRTH">
+            <Quote last="107.5000" high="108.2500" low="107.3000" bid="107.2500" ask="108.0000" volume="8561" dateTime="2019-06-06T20:04:57" />
+        </Symbol>
+        <Symbol id="tts-131579891" name="F HE 6/19" tickerSymbol="HE" isin="XC000A0AE1N8" currency="USD" stockExchangeName="CME GLOBEX" decorativeName="LeanHogs">
+            <Quote last="79.4250" high="80.4000" low="79.1500" bid="79.3500" ask="79.7750" volume="5524" dateTime="2019-06-06T20:04:55" />
+        </Symbol>
+        <Symbol id="tts-148182887" name="F GF 8/19" tickerSymbol="GF" isin="XFTTGFCMEGLB" currency="USD" stockExchangeName="CME GLOBEX" decorativeName="MASTRIND">
+            <Quote last="138.7750" high="140.2750" low="136.5750" bid="138.4000" ask="139.7500" volume="6056" dateTime="2019-06-06T20:04:58" />
+        </Symbol>
+        <Symbol id="tts-97782378" name="F ZC 7/19" tickerSymbol="ZC" isin="XC000A0AEZE1" currency="USD" stockExchangeName="ECBOT" decorativeName="Corn">
+            <Quote last="417.25" high="423.50" low="417.25" bid="417.00" ask="417.50" volume="16055" dateTime="2019-06-07T12:21:44" change="-3.75" changePercent="-0.890736" />
+        </Symbol>
+        <Symbol id="tts-96637915" name="F ZS 7/19" tickerSymbol="ZS" isin="US12492A1079" currency="USD" stockExchangeName="ECBOT" decorativeName="Soybeans">
+            <Quote last="863.50" high="871.50" low="863.00" bid="863.25" ask="863.50" volume="7686" dateTime="2019-06-07T12:23:19" change="-5.00" changePercent="-0.575705" />
+        </Symbol>
+        <Symbol id="tts-97784373" name="F ZL 7/19" tickerSymbol="ZL" currency="USD" stockExchangeName="ECBOT" decorativeName="SoybeanOil">
+            <Quote last="27.6300" high="27.8700" low="27.6100" bid="27.6300" ask="27.6400" volume="5478" dateTime="2019-06-07T12:23:21" change="-0.1300" changePercent="-0.468300" />
+        </Symbol>
+        <Symbol id="tts-97784191" name="F ZM 7/19" tickerSymbol="ZM" currency="USD" stockExchangeName="ECBOT" decorativeName="SoybeanMeal">
+            <Quote last="313.90" high="316.80" low="313.80" bid="313.80" ask="314.00" volume="3583" dateTime="2019-06-07T12:23:19" change="-2.00" changePercent="-0.633112" />
+        </Symbol>
+        <Symbol id="tts-109557264" name="F ZO 7/19" tickerSymbol="ZO" currency="USD" stockExchangeName="ECBOT" decorativeName="Oats">
+            <Quote last="297.50" high="300.25" low="297.50" bid="297.50" ask="298.75" volume="22" dateTime="2019-06-07T12:08:39" change="-3.50" changePercent="-1.162791" />
+        </Symbol>
+        <Symbol id="tts-140572770" name="F ZR 7/19" tickerSymbol="ZR" currency="USD" stockExchangeName="ECBOT" decorativeName="RoughRice">
+            <Quote last="11.725" high="11.725" low="11.725" bid="11.725" ask="11.750" volume="1" dateTime="2019-06-07T02:00:10" change="-0.015" changePercent="-0.127768" />
+        </Symbol>
+        <Symbol id="tts-107087928" name="F ZW 7/19" tickerSymbol="ZW" isin="US12492G1040" currency="USD" stockExchangeName="ECBOT" decorativeName="Wheat">
+            <Quote last="503.50" high="512.75" low="502.00" bid="503.50" ask="503.75" volume="7588" dateTime="2019-06-07T12:22:59" change="-8.25" changePercent="-1.612115" />
+        </Symbol>
+        <Symbol id="tts-125612096" name="F CC 7/19" tickerSymbol="CC" isin="XC000A0AEYD6" currency="USD" stockExchangeName="ICE US" decorativeName="KAKAO">
+            <Quote last="2425.00" high="2433.00" low="2376.00" volume="20207" dateTime="2019-06-06T00:00:00" change="37.00" changePercent="1.549414" />
+        </Symbol>
+        <Symbol id="tts-140593953" name="F LBS 7/19" tickerSymbol="LBS" isin="XFTTLBSCMEGL" currency="USD" stockExchangeName="CME GLOBEX" decorativeName="Lumber">
+            <Quote last="312.0000" high="317.0000" low="306.5000" bid="310.0000" ask="315.0000" volume="225" dateTime="2019-06-06T22:01:18" />
+        </Symbol>
+        <Symbol id="tts-108445487" name="F KC 7/19" tickerSymbol="KC" isin="US6289851031" currency="USX" stockExchangeName="ICE US" decorativeName="KAFFEE">
+            <Quote last="102.25" high="102.55" low="98.60" volume="36841" dateTime="2019-06-06T00:00:00" change="3.70" changePercent="3.754439" />
+        </Symbol>
+        <Symbol id="tts-108445486" name="F CT 7/19" tickerSymbol="CT" isin="XC000A0AEZK8" currency="USX" stockExchangeName="ICE US" decorativeName="BAUMWOLLE">
+            <Quote last="68.54" high="68.72" low="67.48" volume="16514" dateTime="2019-06-06T00:00:00" change="-0.20" changePercent="-0.290951" />
+        </Symbol>
+        <Symbol id="tts-108445324" name="F SB 7/19" tickerSymbol="SB" isin="XC0002272240" currency="USX" stockExchangeName="ICE US" decorativeName="ZUCKER">
+            <Quote last="12.48" high="12.52" low="12.09" volume="87756" dateTime="2019-06-06T00:00:00" change="0.32" changePercent="2.631579" />
+        </Symbol>
+        <Symbol id="tts-108445485" name="F OJ 7/19" tickerSymbol="OJ" isin="XC0005998148" currency="USX" stockExchangeName="ICE US" decorativeName="OSAFT">
+            <Quote last="106.90" high="108.00" low="102.15" volume="791" dateTime="2019-06-06T00:00:00" change="3.50" changePercent="3.384913" />
+        </Symbol>
+    </SymbolList>
+</Result>
