@@ -53,5 +53,11 @@ class ViewController: UITableViewController {
         cell.change.text = changeString + "%"
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "StockDetail") as? StockDetailView else { return }
+        vc.selectedStock = symbolList[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
