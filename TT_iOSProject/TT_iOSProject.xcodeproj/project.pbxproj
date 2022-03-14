@@ -18,6 +18,10 @@
 		DBFE664427DE4207002740EB /* ExtensionURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE664327DE4207002740EB /* ExtensionURLRequest.swift */; };
 		DBFE666A27DE7989002740EB /* tt_symbol_list.xml in Resources */ = {isa = PBXBuildFile; fileRef = DBFE666927DE7989002740EB /* tt_symbol_list.xml */; };
 		DBFE666C27DE968B002740EB /* StockTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE666B27DE968B002740EB /* StockTableCell.swift */; };
+		DBFE666E27DF4878002740EB /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE666D27DF4878002740EB /* InfoViewController.swift */; };
+		DBFE667027DF4F2F002740EB /* NewsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE666F27DF4F2F002740EB /* NewsTableController.swift */; };
+		DBFE667227DF53F3002740EB /* NewsTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE667127DF53F3002740EB /* NewsTableCells.swift */; };
+		DBFE667427DF5586002740EB /* NewsTableFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE667327DF5586002740EB /* NewsTableFirstCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		DBFE664327DE4207002740EB /* ExtensionURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionURLRequest.swift; sourceTree = "<group>"; };
 		DBFE666927DE7989002740EB /* tt_symbol_list.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = tt_symbol_list.xml; path = ../../../../tt_symbol_list.xml; sourceTree = "<group>"; };
 		DBFE666B27DE968B002740EB /* StockTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableCell.swift; sourceTree = "<group>"; };
+		DBFE666D27DF4878002740EB /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		DBFE666F27DF4F2F002740EB /* NewsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableController.swift; sourceTree = "<group>"; };
+		DBFE667127DF53F3002740EB /* NewsTableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCells.swift; sourceTree = "<group>"; };
+		DBFE667327DF5586002740EB /* NewsTableFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableFirstCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,10 @@
 				DBFE664327DE4207002740EB /* ExtensionURLRequest.swift */,
 				DBFE663F27DE3101002740EB /* XMLParser.swift */,
 				DBFE663927DE20B2002740EB /* Symbol.swift */,
+				DBFE666F27DF4F2F002740EB /* NewsTableController.swift */,
+				DBFE667327DF5586002740EB /* NewsTableFirstCell.swift */,
+				DBFE667127DF53F3002740EB /* NewsTableCells.swift */,
+				DBFE666D27DF4878002740EB /* InfoViewController.swift */,
 				DBFE662927DE0D5A002740EB /* Main.storyboard */,
 				DBFE662C27DE0D5D002740EB /* Assets.xcassets */,
 				DBFE662E27DE0D5D002740EB /* LaunchScreen.storyboard */,
@@ -154,12 +166,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBFE667027DF4F2F002740EB /* NewsTableController.swift in Sources */,
+				DBFE667227DF53F3002740EB /* NewsTableCells.swift in Sources */,
 				DBFE664027DE3101002740EB /* XMLParser.swift in Sources */,
+				DBFE667427DF5586002740EB /* NewsTableFirstCell.swift in Sources */,
 				DBFE662827DE0D5A002740EB /* ViewController.swift in Sources */,
 				DBFE663A27DE20B2002740EB /* Symbol.swift in Sources */,
 				DBFE664427DE4207002740EB /* ExtensionURLRequest.swift in Sources */,
 				DBFE666C27DE968B002740EB /* StockTableCell.swift in Sources */,
 				DBFE662427DE0D5A002740EB /* AppDelegate.swift in Sources */,
+				DBFE666E27DF4878002740EB /* InfoViewController.swift in Sources */,
 				DBFE662627DE0D5A002740EB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -49,8 +49,8 @@ class ViewController: UITableViewController {
         cell.name.text = symbolList[indexPath.row].attributes.name
         cell.last.text = String (format: "%.2f", symbolList[indexPath.row].quote.quoteAttrs.last)
         let double = (symbolList[indexPath.row].quote.quoteAttrs.changePercent - 1)
-        let yourShareString = String(format: "%.2f", double)
-        cell.change.text = yourShareString + "%"
+        let changeString = String(format: "%.2f", double)
+        cell.change.text = changeString + "%"
         return cell
     }
 
