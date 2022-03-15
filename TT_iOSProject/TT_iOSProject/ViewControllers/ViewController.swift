@@ -9,20 +9,33 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var symbolList = [Symbol]()
-    var refreshTime = 3.0
+    var symbolList = [Symbol]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    var refreshTime = 3.0 {
+        didSet {
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: refreshTime, target: self, selector: #selector(autoReloadData), userInfo: nil, repeats: false)
+        }
+    }
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Hot Stocks"
-        DataService.shared.getSymbols { symbols in
-            self.symbolList = symbols
+        DataService.shared.getSymbols { [weak self] symbols in
+            self?.symbolList = symbols
         }
-//
-//        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(reloadData))
-//        swipeGestureRecognizer.direction = .down
-//        view.addGestureRecognizer(swipeGestureRecognizer)
+
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        
+        timer = Timer.scheduledTimer(timeInterval: refreshTime, target: self, selector: #selector(autoReloadData), userInfo: nil, repeats: false)
         
     }
     
@@ -33,7 +46,9 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as? StockTableCell else { return UITableViewCell() }
         cell.name.text = symbolList[indexPath.row].name
-        cell.last.text = "\(symbolList[indexPath.row].quote?.last)"
+        if let last = symbolList[indexPath.row].quote?.last {
+            cell.last.text = "\(last)"
+        }
         let double = (symbolList[indexPath.row].quote?.changePercent ?? 1 - 1)
         let changeString = String(format: "%.2f", double)
         cell.change.text = changeString + "%"
@@ -84,21 +99,26 @@ class ViewController: UITableViewController {
         return headerView
     }
     
-//    func autoReloadData() {
-//        refreshTime = TimeInterval.random(in: refreshTime...30)
-//        DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + refreshTime) { [weak self] in
-//            self?.reloadData()
-//        }
-//        refreshTime = TimeInterval.random(in: (refreshTime * 0.8)...(refreshTime * 1.2))
-//    }
-//    
-//    @objc func reloadData() {
-//        DataService.shared.getSymbols()
-//        DispatchQueue.main.async { [weak self] in
-//            self?.tableView.reloadData()
-//        }
-//
-//    }
+    @objc func autoReloadData() {
+        if refreshTime > 29 {
+            refreshTime = 3
+        }
+        reloadData()
+        refreshTime = TimeInterval.random(in: refreshTime...30)
+        refreshTime = TimeInterval.random(in: (refreshTime * 0.8)...(refreshTime * 1.2))
+
+    }
+    
+    @objc func reloadData() {
+        DataService.shared.getSymbols{ [weak self] symbols in
+            self?.symbolList = symbols
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self?.tableView.refreshControl?.endRefreshing()
+                self?.tableView.refreshControl?.isHidden = true
+                self?.tableView.reloadData()
+            }
+        }
+    }
     
     func sortItemsByName(_ items: [Symbol]) -> [Symbol] {
         items.sorted { itemA, itemB in

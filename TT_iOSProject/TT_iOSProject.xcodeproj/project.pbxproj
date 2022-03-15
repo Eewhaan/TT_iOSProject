@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DBBEE28627E0A75900AAF12A /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEE28527E0A75900AAF12A /* UIImageView.swift */; };
+		DBBEE28827E0AEC200AAF12A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEE28727E0AEC200AAF12A /* StringExtension.swift */; };
+		DBBEE28A27E0B63A00AAF12A /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEE28927E0B63A00AAF12A /* DateExtension.swift */; };
 		DBE9B2A727DF704800F62080 /* StockDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE9B2A627DF704800F62080 /* StockDetailView.swift */; };
 		DBE9B2AD27DFBFD100F62080 /* NewsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE9B2AC27DFBFD100F62080 /* NewsDetailVC.swift */; };
 		DBE9B2B127DFE7FD00F62080 /* SymbolsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE9B2AF27DFE7FD00F62080 /* SymbolsParser.swift */; };
@@ -25,7 +28,6 @@
 		DBFE662B27DE0D5A002740EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFE662927DE0D5A002740EB /* Main.storyboard */; };
 		DBFE662D27DE0D5D002740EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBFE662C27DE0D5D002740EB /* Assets.xcassets */; };
 		DBFE663027DE0D5D002740EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFE662E27DE0D5D002740EB /* LaunchScreen.storyboard */; };
-		DBFE666A27DE7989002740EB /* tt_symbol_list.xml in Resources */ = {isa = PBXBuildFile; fileRef = DBFE666927DE7989002740EB /* tt_symbol_list.xml */; };
 		DBFE666C27DE968B002740EB /* StockTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE666B27DE968B002740EB /* StockTableCell.swift */; };
 		DBFE666E27DF4878002740EB /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE666D27DF4878002740EB /* InfoViewController.swift */; };
 		DBFE667027DF4F2F002740EB /* NewsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFE666F27DF4F2F002740EB /* NewsTableController.swift */; };
@@ -34,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DBBEE28527E0A75900AAF12A /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		DBBEE28727E0AEC200AAF12A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		DBBEE28927E0B63A00AAF12A /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		DBE9B2A627DF704800F62080 /* StockDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailView.swift; sourceTree = "<group>"; };
 		DBE9B2AC27DFBFD100F62080 /* NewsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailVC.swift; sourceTree = "<group>"; };
 		DBE9B2AF27DFE7FD00F62080 /* SymbolsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolsParser.swift; sourceTree = "<group>"; };
@@ -54,7 +59,6 @@
 		DBFE662C27DE0D5D002740EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBFE662F27DE0D5D002740EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBFE663127DE0D5D002740EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBFE666927DE7989002740EB /* tt_symbol_list.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = tt_symbol_list.xml; path = ../../../../tt_symbol_list.xml; sourceTree = "<group>"; };
 		DBFE666B27DE968B002740EB /* StockTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableCell.swift; sourceTree = "<group>"; };
 		DBFE666D27DF4878002740EB /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DBFE666F27DF4F2F002740EB /* NewsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,9 @@
 			isa = PBXGroup;
 			children = (
 				DBE9B2B427DFE81200F62080 /* URLRequest.swift */,
+				DBBEE28527E0A75900AAF12A /* UIImageView.swift */,
+				DBBEE28727E0AEC200AAF12A /* StringExtension.swift */,
+				DBBEE28927E0B63A00AAF12A /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -172,7 +179,6 @@
 				DBFE662C27DE0D5D002740EB /* Assets.xcassets */,
 				DBFE662E27DE0D5D002740EB /* LaunchScreen.storyboard */,
 				DBFE663127DE0D5D002740EB /* Info.plist */,
-				DBFE666927DE7989002740EB /* tt_symbol_list.xml */,
 			);
 			path = TT_iOSProject;
 			sourceTree = "<group>";
@@ -236,7 +242,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBFE663027DE0D5D002740EB /* LaunchScreen.storyboard in Resources */,
-				DBFE666A27DE7989002740EB /* tt_symbol_list.xml in Resources */,
 				DBFE662D27DE0D5D002740EB /* Assets.xcassets in Resources */,
 				DBFE662B27DE0D5A002740EB /* Main.storyboard in Resources */,
 			);
@@ -263,11 +268,14 @@
 				DBE9B2BB27DFE82500F62080 /* SymbolMapper.swift in Sources */,
 				DBE9B2C327DFE85900F62080 /* Symbol.swift in Sources */,
 				DBFE666C27DE968B002740EB /* StockTableCell.swift in Sources */,
+				DBBEE28A27E0B63A00AAF12A /* DateExtension.swift in Sources */,
 				DBFE662427DE0D5A002740EB /* AppDelegate.swift in Sources */,
 				DBFE666E27DF4878002740EB /* InfoViewController.swift in Sources */,
+				DBBEE28627E0A75900AAF12A /* UIImageView.swift in Sources */,
 				DBE9B2B527DFE81200F62080 /* URLRequest.swift in Sources */,
 				DBFE662627DE0D5A002740EB /* SceneDelegate.swift in Sources */,
 				DBE9B2B127DFE7FD00F62080 /* SymbolsParser.swift in Sources */,
+				DBBEE28827E0AEC200AAF12A /* StringExtension.swift in Sources */,
 				DBE9B2C627DFEA9E00F62080 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

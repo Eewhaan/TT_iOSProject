@@ -36,6 +36,29 @@ class StockDetailView: UIViewController {
             color = "black"
         }
         
+        guard
+            let last = selectedStock.quote?.last,
+            let high = selectedStock.quote?.high,
+            let low = selectedStock.quote?.low else {
+                    return
+                }
+        let ask = selectedStock.quote?.ask ?? 0
+        let bid = selectedStock.quote?.bid ?? 0
+        let volume = selectedStock.quote?.volume ?? 0
+        let change = selectedStock.quote?.change ?? 0
+        var dateString: String
+        if let date = selectedStock.quote?.dateTime {
+            dateString = date.toString()
+        } else {
+            dateString = "-"
+        }
+        
+        
+
+
+
+
+        
         let html = """
             <head>
             <meta name= "viewport" content="width=device-width, initial-scale=1">
@@ -79,7 +102,7 @@ class StockDetailView: UIViewController {
                 </tr>
                 <tr>
                     <th>ISIN</th>
-                    <td>\(selectedStock.isin)</td>
+                    <td>\(selectedStock.isin ?? "-")</td>
                 </tr>
                 <tr>
                     <th>Currency</th>
@@ -95,35 +118,35 @@ class StockDetailView: UIViewController {
                 </tr>
                 <tr>
                     <th>Last</th>
-                    <td>\(selectedStock.quote?.last)</td>
+                    <td>\(last)</td>
                 </tr>
                 <tr>
                     <th>High</th>
-                    <td>\(selectedStock.quote?.high)</td>
+                    <td>\(high)</td>
                 </tr>
                 <tr>
                     <th>Low</th>
-                    <td>\(selectedStock.quote?.low)</td>
+                    <td>\(low)</td>
                 </tr>
                 <tr>
                     <th>Bid</th>
-                    <td>\(selectedStock.quote?.bid)</td>
+                    <td>\(bid)</td>
                 </tr>
                 <tr>
                     <th>Ask</th>
-                    <td>\(selectedStock.quote?.ask)</td>
+                    <td>\(ask)</td>
                 </tr>
                 <tr>
                     <th>Volume</th>
-                    <td>\(selectedStock.quote?.volume)</td>
+                    <td>\(volume)</td>
                 </tr>
                 <tr>
                     <th>Date</th>
-                    <td>\(selectedStock.quote?.dateTime)</td>
+                    <td>\(dateString)</td>
                 </tr>
                 <tr>
                     <th>Change</th>
-                    <td style="color:\(color)">\(selectedStock.quote?.change)</td>
+                    <td style="color:\(color)">\(change)</td>
                 </tr>
                 <tr>
                     <th>Change Percent</th>
