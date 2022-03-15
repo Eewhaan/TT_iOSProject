@@ -27,7 +27,7 @@ struct QuoteMapper {
         return Quote(last: last,
                      low: low,
                      high: high,
-                     dateTime: dateTime,
+                     dateTime: dateTime.toDate(),
                      bid: bid,
                      ask: ask,
                      volume: volume,

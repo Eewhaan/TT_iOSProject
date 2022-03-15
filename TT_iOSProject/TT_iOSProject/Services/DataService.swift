@@ -19,6 +19,10 @@ class DataService {
     private let userName = "android_tt"
     private let password = "Sk3M!@p9e"
     
+    
+    private var didFetchSymbolsFromEndpoint = false
+    private var symbols = [Symbol]()
+    
     private func getData(_ url: URL, _ completion: @escaping (Data) -> ()) {
         var request = URLRequest(url: url)
         request.setBasicAuth(username: userName, password: password)
@@ -34,10 +38,22 @@ class DataService {
     }
     
     func getSymbols(_ completion: @escaping ([Symbol]) -> ()){
+        // We will fetch data from the endpoint only once - afterwards we will save that array and randomize it's data with every call, so we can simulate price changes
+        if didFetchSymbolsFromEndpoint {
+            symbols = symbols.map({ symbol in
+                var newValueSymbol = symbol
+                newValueSymbol.quote?.randomizeValues()
+                return newValueSymbol
+            })
+            completion(symbols)
+            return
+        }
         getData(symbolUrl) { data in
             let parser = SymbolsParser(data: data)
             if parser.parse() {
-                completion(parser.getSymbols())
+                self.symbols = parser.getSymbols()
+                self.didFetchSymbolsFromEndpoint = true
+                completion(self.symbols)
             } else {
                 if let error = parser.parserError {
                     print(error)
