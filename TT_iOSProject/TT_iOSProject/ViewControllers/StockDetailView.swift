@@ -146,7 +146,7 @@ class StockDetailView: UIViewController {
                 </tr>
                 <tr>
                     <th>Change</th>
-                    <td style="color:\(color)">\(change)</td>
+                    <td style="color:\(color)">\(abs(change))</td>
                 </tr>
                 <tr>
                     <th>Change Percent</th>

@@ -24,6 +24,7 @@ class InfoViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         navigationItem.title = "Info"
         
@@ -37,6 +38,11 @@ class InfoViewController: UIViewController, WKNavigationDelegate {
         }
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        UserDefaults.standard.set(2, forKey: "View")
 
     }
     

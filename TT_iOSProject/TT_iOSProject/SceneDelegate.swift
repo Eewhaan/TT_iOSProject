@@ -15,16 +15,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let tabBarController = window?.rootViewController as? UITabBarController {
             let storyboard = UIStoryboard (name: "Main", bundle: nil)
-            let nav = storyboard.instantiateViewController(withIdentifier: "NewsNav") as! UINavigationController
-            nav.tabBarItem = UITabBarItem (title: "News", image: UIImage(systemName: "newspaper.fill"), tag: 1)
-            tabBarController.viewControllers?.append(nav)
+            let navNews = storyboard.instantiateViewController(withIdentifier: "NewsNav") as! UINavigationController
+            navNews.tabBarItem = UITabBarItem (title: "News", image: UIImage(systemName: "newspaper.fill"), tag: 1)
+            let navInfo = storyboard.instantiateViewController(withIdentifier: "InfoNav") as! UINavigationController
+            navInfo.tabBarItem = UITabBarItem (title: "Info", image: UIImage(systemName: "info.circle"), tag: 2)
+            tabBarController.viewControllers?.append(navNews)
+            tabBarController.viewControllers?.append(navInfo)
+            let vcIndex = UserDefaults.standard.integer(forKey: "View")
+            tabBarController.selectedIndex = vcIndex
         }
-        if let tabBarController = window?.rootViewController as? UITabBarController {
-            let storyboard = UIStoryboard (name: "Main", bundle: nil)
-            let nav = storyboard.instantiateViewController(withIdentifier: "InfoNav") as! UINavigationController
-            nav.tabBarItem = UITabBarItem (title: "Info", image: UIImage(systemName: "info.circle"), tag: 2)
-            tabBarController.viewControllers?.append(nav)
-        }
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
