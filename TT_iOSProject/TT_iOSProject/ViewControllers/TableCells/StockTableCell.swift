@@ -12,5 +12,6 @@ class StockTableCell: UITableViewCell {
     @IBOutlet weak var change: UILabel!
     @IBOutlet weak var last: UILabel!
     
+    
 }
 

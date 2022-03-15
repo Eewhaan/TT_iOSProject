@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 class StockDetailView: UIViewController {
-    var selectedStock = Symbol()
+    var selectedStock: Symbol?
     var webView: WKWebView!
 
     override func loadView() {
@@ -19,7 +19,22 @@ class StockDetailView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = selectedStock.attributes.name
+        guard let selectedStock = selectedStock else {
+            return
+        }
+        navigationItem.title = selectedStock.name
+        var color: String
+        let numberFormat = NumberFormatter()
+        numberFormat.numberStyle = .decimal
+        guard let number = numberFormat.number(from: String(format: "%.2f", selectedStock.quote?.changePercent ?? 1 - 1)) else {return}
+        let double = Double(truncating: number)
+        if double < 0.00 {
+            color = "red"
+        } else if double > 0.00 {
+            color = "green"
+        } else {
+            color = "black"
+        }
         
         let html = """
             <head>
@@ -56,63 +71,63 @@ class StockDetailView: UIViewController {
             <table>
                 <tr>
                     <th>Name</th>
-                    <td>\(selectedStock.attributes.name)</td>
+                    <td>\(selectedStock.name)</td>
                 </tr>
                 <tr>
                     <th>Ticker Symbol</th>
-                    <td>\(selectedStock.attributes.tickerSymbol)</td>
+                    <td>\(selectedStock.tickerSymbol)</td>
                 </tr>
                 <tr>
                     <th>ISIN</th>
-                    <td>\(selectedStock.attributes.isin)</td>
+                    <td>\(selectedStock.isin)</td>
                 </tr>
                 <tr>
                     <th>Currency</th>
-                    <td>\(selectedStock.attributes.currency)</td>
+                    <td>\(selectedStock.currency)</td>
                 </tr>
                 <tr>
                     <th>Stock Exchange Name</th>
-                    <td>\(selectedStock.attributes.stockExchangeName)</td>
+                    <td>\(selectedStock.stockExchangeName)</td>
                 </tr>
                 <tr>
                     <th>Decorative Name</th>
-                    <td>\(selectedStock.attributes.decorativeName)</td>
+                    <td>\(selectedStock.decorativeName)</td>
                 </tr>
                 <tr>
                     <th>Last</th>
-                    <td>\(selectedStock.quote.quoteAttrs.last)</td>
+                    <td>\(selectedStock.quote?.last)</td>
                 </tr>
                 <tr>
                     <th>High</th>
-                    <td>\(selectedStock.quote.quoteAttrs.high)</td>
+                    <td>\(selectedStock.quote?.high)</td>
                 </tr>
                 <tr>
                     <th>Low</th>
-                    <td>\(selectedStock.quote.quoteAttrs.low)</td>
+                    <td>\(selectedStock.quote?.low)</td>
                 </tr>
                 <tr>
                     <th>Bid</th>
-                    <td>\(selectedStock.quote.quoteAttrs.bid)</td>
+                    <td>\(selectedStock.quote?.bid)</td>
                 </tr>
                 <tr>
                     <th>Ask</th>
-                    <td>\(selectedStock.quote.quoteAttrs.ask)</td>
+                    <td>\(selectedStock.quote?.ask)</td>
                 </tr>
                 <tr>
                     <th>Volume</th>
-                    <td>\(selectedStock.quote.quoteAttrs.volume)</td>
+                    <td>\(selectedStock.quote?.volume)</td>
                 </tr>
                 <tr>
                     <th>Date</th>
-                    <td>\(selectedStock.quote.quoteAttrs.dateTime)</td>
+                    <td>\(selectedStock.quote?.dateTime)</td>
                 </tr>
                 <tr>
                     <th>Change</th>
-                    <td>\(selectedStock.quote.quoteAttrs.change)</td>
+                    <td style="color:\(color)">\(selectedStock.quote?.change)</td>
                 </tr>
                 <tr>
                     <th>Change Percent</th>
-                    <td>\(String(format: "%.2f", selectedStock.quote.quoteAttrs.changePercent - 1))%</td>
+                    <td style="color:\(color)">\(String(format: "%.2f", selectedStock.quote?.changePercent ?? 1 - 1))%</td>
                 </tr>
             </table>
 
