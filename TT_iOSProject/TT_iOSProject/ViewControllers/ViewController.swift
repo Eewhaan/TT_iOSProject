@@ -13,9 +13,12 @@ class ViewController: UITableViewController {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
+                self?.clickCounter = 0
             }
         }
     }
+
+    var sortedSymbolList = [Symbol]()
     var refreshTime = 3.0 {
         didSet {
             timer?.invalidate()
@@ -23,15 +26,18 @@ class ViewController: UITableViewController {
         }
     }
     var timer: Timer?
+    var clickCounter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortSymbols))
         navigationItem.title = "Hot Stocks"
-        DataService.shared.getSymbols { [weak self] symbols in
-            self?.symbolList = symbols
+        DataService.shared.getSymbols { symbols in
+            self.symbolList = symbols
+            self.sortedSymbolList = self.symbolList
         }
-
+        
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         
@@ -39,64 +45,67 @@ class ViewController: UITableViewController {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UserDefaults.standard.set(0, forKey: "View")
+
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return symbolList.count
+        return sortedSymbolList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as? StockTableCell else { return UITableViewCell() }
-        cell.name.text = symbolList[indexPath.row].name
-        if let last = symbolList[indexPath.row].quote?.last {
-            cell.last.text = "\(last)"
+        cell.name.text = sortedSymbolList[indexPath.row].name
+        
+        var color = UIColor()
+        let double = (sortedSymbolList[indexPath.row].quote?.changePercent ?? 1 - 1)
+        if double > 0 {
+            color = UIColor.systemGreen
+        } else if double < 0 {
+            color = UIColor.systemRed
+        } else {
+            color = UIColor.black
         }
-        let double = (symbolList[indexPath.row].quote?.changePercent ?? 1 - 1)
         let changeString = String(format: "%.2f", double)
         cell.change.text = changeString + "%"
+        cell.change.textColor = color
+        if let last = sortedSymbolList[indexPath.row].quote?.last {
+            cell.last.text = "\(String(format: "%.2f", last))"
+            var color = UIColor()
+            if double > 0 {
+                color = UIColor.systemGreen
+            } else if double < 0 {
+                color = UIColor.systemRed
+            } else {
+                color = UIColor.clear
+            }
+            UIView.animate(withDuration: 1.5, delay: 0, options: [], animations: {
+                cell.last.layer.backgroundColor = color.cgColor
+                cell.layoutIfNeeded()
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.5, animations: {
+                    cell.last.layer.backgroundColor = UIColor.clear.cgColor
+                    
+                })
+            })
+            
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "StockDetail") as? StockDetailView else { return }
-        vc.selectedStock = symbolList[indexPath.row]
+        vc.selectedStock = sortedSymbolList[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            symbolList.remove(at: indexPath.row)
+            sortedSymbolList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .right)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
-        
-        let width = (headerView.frame.width - 20)/3
-        let height = headerView.frame.height - 10
-        let sortButton = UIButton(type: .system)
-        sortButton.setTitle("Name", for: .normal)
-        sortButton.frame = CGRect.init(x: 5, y: 5, width: width, height: height)
-        headerView.addSubview(sortButton)
-        
-        let changeLabel = UILabel()
-        changeLabel.frame = CGRect.init(x: (headerView.frame.width - 20)/3 + 5, y: 5, width: width, height: height)
-        changeLabel.text = "Change"
-        changeLabel.font = .systemFont(ofSize: 15)
-        changeLabel.textColor = .black
-        changeLabel.textAlignment = .center
-        
-        headerView.addSubview(changeLabel)
-        
-        let lastLabel = UILabel()
-        lastLabel.frame = CGRect.init(x: (headerView.frame.width - 20)/1.5 + 5, y: 5, width: width, height: height)
-        lastLabel.text = "Last"
-        lastLabel.font = .systemFont(ofSize: 15)
-        lastLabel.textColor = .black
-        lastLabel.textAlignment = .center
-        
-        headerView.addSubview(lastLabel)
-               
-        return headerView
     }
     
     @objc func autoReloadData() {
@@ -110,9 +119,10 @@ class ViewController: UITableViewController {
     }
     
     @objc func reloadData() {
-        DataService.shared.getSymbols{ [weak self] symbols in
-            self?.symbolList = symbols
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DataService.shared.getSymbols{ symbols in
+            self.symbolList = symbols
+            self.sortedSymbolList = self.symbolList
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.tableView.refreshControl?.isHidden = true
                 self?.tableView.reloadData()
@@ -120,10 +130,36 @@ class ViewController: UITableViewController {
         }
     }
     
-    func sortItemsByName(_ items: [Symbol]) -> [Symbol] {
+    
+    @objc func sortSymbols() {
+
+        clickCounter += 1
+
+        switch clickCounter {
+        case 1:
+            sortedSymbolList = sortByNameAscending(symbolList)
+        case 2:
+            sortedSymbolList = sortByNameDescending(symbolList)
+        case 3:
+            sortedSymbolList = symbolList
+            clickCounter = 0
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
+    
+    func sortByNameAscending(_ items: [Symbol]) -> [Symbol] {
         items.sorted { itemA, itemB in
             itemA.name < itemB.name
         }
     }
+    
+    func sortByNameDescending(_ items: [Symbol]) -> [Symbol] {
+        items.sorted { itemA, itemB in
+            itemA.name > itemB.name
+        }
+    }
+
 
 }

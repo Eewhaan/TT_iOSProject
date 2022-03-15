@@ -16,15 +16,21 @@ class NewsTableController: UITableViewController {
             }
         }
     }
-    var numberOfRows = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         DataService.shared.getNewsArticles { newsArticles in
             self.articlesList = newsArticles
         }
         navigationItem.title = "Breaking News"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UserDefaults.standard.set(1, forKey: "View")
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,7 +43,7 @@ class NewsTableController: UITableViewController {
             guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "NewsFirstCell", for: indexPath) as? NewsTableFirstCell  else { return UITableViewCell() }
             firstCell.newsTitle.text = articlesList[0].headline
             if let imageID = articlesList[0].imageID {
-                let imageURL = URL(string: "https://cdn.ttweb.net/News/images/\(imageID).jpg?preset=w220_q40")
+                let imageURL = URL(string: "https://cdn.ttweb.net/News/images/\(imageID).jpg?preset=w320_q50")
                 if let imageURL = imageURL {
                     firstCell.newsImage.load(url: imageURL)
                     
