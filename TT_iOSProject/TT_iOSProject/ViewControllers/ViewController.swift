@@ -13,7 +13,7 @@ class ViewController: UITableViewController {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
-                self?.clickCounter = 0
+                
             }
         }
     }
@@ -31,13 +31,14 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortSymbols))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(clickedSort))
         navigationItem.title = "Hot Stocks"
         DataService.shared.getSymbols { symbols in
             self.symbolList = symbols
-            self.sortedSymbolList = self.symbolList
+            self.sortSymbols()
         }
         
+        clickCounter = UserDefaults.standard.integer(forKey: "Sort")
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         
@@ -107,6 +108,9 @@ class ViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .right)
         }
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        55
+    }
     
     @objc func autoReloadData() {
         if refreshTime > 29 {
@@ -121,7 +125,7 @@ class ViewController: UITableViewController {
     @objc func reloadData() {
         DataService.shared.getSymbols{ symbols in
             self.symbolList = symbols
-            self.sortedSymbolList = self.symbolList
+            self.sortSymbols()
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.tableView.refreshControl?.isHidden = true
@@ -130,23 +134,27 @@ class ViewController: UITableViewController {
         }
     }
     
-    
-    @objc func sortSymbols() {
-
+    @objc func clickedSort() {
         clickCounter += 1
-
+        if clickCounter == 3 {
+            clickCounter = 0
+        }
+        sortSymbols()
+        tableView.reloadData()
+        UserDefaults.standard.set(clickCounter, forKey: "Sort")
+    }
+    
+    func sortSymbols() {
         switch clickCounter {
+        case 0:
+            sortedSymbolList = symbolList
         case 1:
             sortedSymbolList = sortByNameAscending(symbolList)
         case 2:
             sortedSymbolList = sortByNameDescending(symbolList)
-        case 3:
-            sortedSymbolList = symbolList
-            clickCounter = 0
         default:
             break
         }
-        tableView.reloadData()
     }
     
     func sortByNameAscending(_ items: [Symbol]) -> [Symbol] {
