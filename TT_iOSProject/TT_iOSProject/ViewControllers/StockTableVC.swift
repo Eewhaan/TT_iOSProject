@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
+       
     var symbolList = [Symbol]() {
         didSet {
             DispatchQueue.main.async { [weak self] in
@@ -31,7 +33,9 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(clickedSort))
+        tableView.register(StockTableCell.self, forCellReuseIdentifier: "StockCell")
+        tableView.register(StockTableHeader.self, forHeaderFooterViewReuseIdentifier: StockTableHeader.identifier)
+
         navigationItem.title = "Hot Stocks"
         DataService.shared.getSymbols { symbols in
             self.symbolList = symbols
@@ -52,64 +56,59 @@ class ViewController: UITableViewController {
 
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortedSymbolList.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as? StockTableCell else { return UITableViewCell() }
-        cell.name.text = sortedSymbolList[indexPath.row].name
-        
-        var color = UIColor()
+        cell.loadSetup()
         let double = (sortedSymbolList[indexPath.row].quote?.changePercent ?? 1 - 1)
-        if double > 0 {
-            color = UIColor.systemGreen
-        } else if double < 0 {
-            color = UIColor.systemRed
-        } else {
-            color = UIColor.black
-        }
         let changeString = String(format: "%.2f", double)
-        cell.change.text = changeString + "%"
-        cell.change.textColor = color
-        if let last = sortedSymbolList[indexPath.row].quote?.last {
-            cell.last.text = "\(String(format: "%.2f", last))"
-            var color = UIColor()
-            if double > 0 {
-                color = UIColor.systemGreen
-            } else if double < 0 {
-                color = UIColor.systemRed
-            } else {
-                color = UIColor.clear
-            }
-            UIView.animate(withDuration: 1.5, delay: 0, options: [], animations: {
-                cell.last.layer.backgroundColor = color.cgColor
-                cell.layoutIfNeeded()
-            }, completion: { _ in
-                UIView.animate(withDuration: 0.5, animations: {
-                    cell.last.layer.backgroundColor = UIColor.clear.cgColor
-                    
-                })
-            })
-            
+        let last = sortedSymbolList[indexPath.row].quote?.last ?? 0
+        let lastString = String(format: "%.2f", last)
+        var textColor = UIColor()
+        var backgroundColor = UIColor()
+        if double > 0 {
+            textColor = UIColor.systemGreen
+            backgroundColor = UIColor.systemGreen
+        } else if double < 0 {
+            textColor = UIColor.systemRed
+            backgroundColor = UIColor.systemRed
+        } else {
+            textColor = UIColor.label
+            backgroundColor = UIColor.clear
         }
+        cell.configure(name: sortedSymbolList[indexPath.row].name, change: changeString, last: lastString, textColor: textColor, backgroundColor: backgroundColor.cgColor)
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "StockDetail") as? StockDetailView else { return }
         vc.selectedStock = sortedSymbolList[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             sortedSymbolList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .right)
         }
     }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        55
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        60
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: StockTableHeader.identifier) as? StockTableHeader else { return nil}
+        header.loadSetup()
+        header.name.addTarget(self, action: #selector(sortTapped), for: .touchUpInside)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
     
     @objc func autoReloadData() {
@@ -132,16 +131,6 @@ class ViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         }
-    }
-    
-    @objc func clickedSort() {
-        clickCounter += 1
-        if clickCounter == 3 {
-            clickCounter = 0
-        }
-        sortSymbols()
-        tableView.reloadData()
-        UserDefaults.standard.set(clickCounter, forKey: "Sort")
     }
     
     func sortSymbols() {
@@ -168,6 +157,16 @@ class ViewController: UITableViewController {
             itemA.name > itemB.name
         }
     }
-
+    
+    @objc func sortTapped(_ sender: UIButton) {
+        clickCounter += 1
+        if clickCounter == 3 {
+            clickCounter = 0
+        }
+        sortSymbols()
+        tableView.reloadData()
+        UserDefaults.standard.set(clickCounter, forKey: "Sort")
+    }
+    
 
 }
