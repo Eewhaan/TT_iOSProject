@@ -77,13 +77,27 @@ class StockTableCell: UITableViewCell {
         self.last.textAlignment = .center
     }
     
-    func configure(name: String, change: String, last: String, textColor: UIColor, backgroundColor: CGColor) {
-        self.name.text = name
-        self.change.text = change
+    func configure(symbol: Symbol) {
+        
+        self.name.text = symbol.name
+        let double = (symbol.quote?.changePercent ?? 1 - 1)
+        var textColor = UIColor()
+        var backgroundColor = UIColor()
+        if double > 0 {
+            textColor = UIColor.systemGreen
+            backgroundColor = UIColor.systemGreen
+        } else if double < 0 {
+            textColor = UIColor.systemRed
+            backgroundColor = UIColor.systemRed
+        } else {
+            textColor = UIColor.label
+            backgroundColor = UIColor.clear
+        }
+        self.change.text = String(format: "%.2f", double)
         self.change.textColor = textColor
-        self.last.text = last
+        self.last.text = String(format: "%.2f", symbol.quote?.last ?? 0)
         UIView.animate(withDuration: 1.5, delay: 0, options: [], animations: { [weak self] in
-            self?.last?.layer.backgroundColor = backgroundColor
+            self?.last?.layer.backgroundColor = backgroundColor.cgColor
             self?.layoutIfNeeded()
         }, completion: { _ in
             UIView.animate(withDuration: 0.5, animations: { [weak self] in

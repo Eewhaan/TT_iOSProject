@@ -11,14 +11,14 @@ struct Quote {
     var last: Double
     let low: Double
     let high: Double
-    let dateTime: Date
+    var dateTime: Date
     let bid: Double?
     let ask: Double?
     let volume: Int?
     var change: Double?
     var changePercent: Double?
     
-    
+    // trying to mimic constant changes in stock market that would be fetched from server in real scenario
     mutating func randomizeValues() {
         let newLast = Double.random(in: (last * 0.8)...(last * 1.2))
         
@@ -30,5 +30,6 @@ struct Quote {
         change = newLast - last
         changePercent = change! / last * 100
         last = newLast
+        dateTime = .now
     }
 }

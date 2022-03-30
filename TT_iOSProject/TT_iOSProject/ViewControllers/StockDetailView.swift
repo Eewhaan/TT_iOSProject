@@ -5,159 +5,103 @@
 //  Created by Ivan Pavic on 14.3.22..
 //
 
+
+import CoreData
+import CorePlot
 import UIKit
-import WebKit
 
-class StockDetailView: UIViewController {
+class StockDetailView: UIViewController, UITableViewDelegate, UITableViewDataSource, CPTScatterPlotDelegate, CPTScatterPlotDataSource {
+    
+    var oneMinute: Double = 60
     var selectedStock: Symbol?
-    var webView: WKWebView!
+    var graphData = [NSManagedObject]()
 
-    override func loadView() {
-        webView = WKWebView()
-        view = webView
-    }
+    var plot: CPTScatterPlot!
+    @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let selectedStock = selectedStock else {
             return
         }
-        navigationItem.title = selectedStock.name
-        var color: String
-        let numberFormat = NumberFormatter()
-        numberFormat.numberStyle = .decimal
-        guard let number = numberFormat.number(from: String(format: "%.2f", selectedStock.quote?.changePercent ?? 1 - 1)) else {return}
-        let double = Double(truncating: number)
-        if double < 0.00 {
-            color = "red"
-        } else if double > 0.00 {
-            color = "green"
-        } else {
-            color = "black"
-        }
         
-        guard
-            let last = selectedStock.quote?.last,
-            let high = selectedStock.quote?.high,
-            let low = selectedStock.quote?.low else {
-                    return
-                }
-        let ask = selectedStock.quote?.ask ?? 0
-        let bid = selectedStock.quote?.bid ?? 0
-        let volume = selectedStock.quote?.volume ?? 0
-        let change = selectedStock.quote?.change ?? 0
-        var dateString: String
-        if let date = selectedStock.quote?.dateTime {
-            dateString = date.toString()
-        } else {
-            dateString = "-"
-        }
-        
-        
-
-
-
-
-        
-        let html = """
-            <head>
-            <meta name= "viewport" content="width=device-width, initial-scale=1">
-
-            <style>
-            img {
-                border: 2px solid #555;
-                margin: 0px 0 10px 2px;
-                border-radius: 10px;
-            }
-            table {
-                font-family: sans-serif;
-                font-size: 80%;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td, th {
-                
-                border: 1px solid #555;
-                text-align: left;
-                padding: 8px;
-            }
-            
-            tr:hover { background-color: #D6EEEE; }
-            
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-            </style>
-            </head>
-            <body>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <td>\(selectedStock.name)</td>
-                </tr>
-                <tr>
-                    <th>Ticker Symbol</th>
-                    <td>\(selectedStock.tickerSymbol)</td>
-                </tr>
-                <tr>
-                    <th>ISIN</th>
-                    <td>\(selectedStock.isin ?? "-")</td>
-                </tr>
-                <tr>
-                    <th>Currency</th>
-                    <td>\(selectedStock.currency)</td>
-                </tr>
-                <tr>
-                    <th>Stock Exchange Name</th>
-                    <td>\(selectedStock.stockExchangeName)</td>
-                </tr>
-                <tr>
-                    <th>Decorative Name</th>
-                    <td>\(selectedStock.decorativeName)</td>
-                </tr>
-                <tr>
-                    <th>Last</th>
-                    <td>\(last)</td>
-                </tr>
-                <tr>
-                    <th>High</th>
-                    <td>\(high)</td>
-                </tr>
-                <tr>
-                    <th>Low</th>
-                    <td>\(low)</td>
-                </tr>
-                <tr>
-                    <th>Bid</th>
-                    <td>\(bid)</td>
-                </tr>
-                <tr>
-                    <th>Ask</th>
-                    <td>\(ask)</td>
-                </tr>
-                <tr>
-                    <th>Volume</th>
-                    <td>\(volume)</td>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <td>\(dateString)</td>
-                </tr>
-                <tr>
-                    <th>Change</th>
-                    <td style="color:\(color)">\(abs(change))</td>
-                </tr>
-                <tr>
-                    <th>Change Percent</th>
-                    <td style="color:\(color)">\(String(format: "%.2f", selectedStock.quote?.changePercent ?? 1 - 1))%</td>
-                </tr>
-            </table>
-
-            </body>
-            </html>
-            
-            """
-        webView.loadHTMLString(html, baseURL: nil)
+        initializeGraph()
+        let navLabel = UILabel()
+        navLabel.text = selectedStock.name
+        navLabel.adjustsFontSizeToFitWidth = true
+        navigationItem.titleView = navLabel
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchGraphData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var cell = UITableViewCell()
+        guard let selectedStock = selectedStock else { return cell }
+
+        if indexPath.row < 13 {
+            guard let plainCell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as? DetailStockCell else { return cell}
+            plainCell.configure(selectedSymbol: selectedStock, row: indexPath.row)
+            cell = plainCell
+        } else {
+            guard let changeCell = tableView.dequeueReusableCell(withIdentifier: "ChangeCell", for: indexPath) as? ChangeDetailCell else { return cell }
+            changeCell.configure(selectedSymbol: selectedStock, row: indexPath.row)
+            cell = changeCell
+        }
+        return cell
+    }
+    
+    func initializeGraph() {
+        graphView.configureGraphView()
+        plot = CPTScatterPlot()
+        graphView.configurePlot(vc: self, plot: plot)
+    }
+    
+    func dateDifferenceInMinutes(from fromDate: Date, to toDate: Date) -> Double {
+        let delta = toDate.timeIntervalSince(fromDate)
+        return trunc(delta/60)
+    }
+    
+    func numberOfRecords(for plot: CPTPlot) -> UInt {
+        return UInt(graphData.count)
+    }
+    
+    func number(for plot: CPTPlot, field fieldEnum: UInt, record idx: UInt) -> Any? {
+        switch CPTScatterPlotField(rawValue: Int(fieldEnum)) {
+        case .X:
+//            return dateDifferenceInMinutes(from: graphData[0].value(forKeyPath: "date") as! Date, to: graphData[Int(idx)].value(forKeyPath: "date") as! Date)
+            return dateDifferenceInMinutes(from: .now, to: graphData[Int(idx)].value(forKeyPath: "date") as! Date)
+        case .Y:
+            return graphData[Int(idx)].value(forKeyPath: "changePercent")
+        default:
+            return 0
+        }
+    }
+    
+    // when testing graph it is recommended to let application run for few minutes so there is some significant amount of data to fetch
+    func fetchGraphData() {
+        guard let selectedStock = selectedStock else { return }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Stock")
+        let predicate = NSPredicate(format: "name = %@", argumentArray: [selectedStock.name])
+        fetchRequest.predicate = predicate
+        
+        do {
+            graphData = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print ("Couldn't fetch data. \(error), \(error.userInfo)")
+        }
+    }
+
 }
