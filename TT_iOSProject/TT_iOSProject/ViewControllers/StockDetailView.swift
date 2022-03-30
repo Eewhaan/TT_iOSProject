@@ -78,7 +78,6 @@ class StockDetailView: UIViewController, UITableViewDelegate, UITableViewDataSou
     func number(for plot: CPTPlot, field fieldEnum: UInt, record idx: UInt) -> Any? {
         switch CPTScatterPlotField(rawValue: Int(fieldEnum)) {
         case .X:
-//            return dateDifferenceInMinutes(from: graphData[0].value(forKeyPath: "date") as! Date, to: graphData[Int(idx)].value(forKeyPath: "date") as! Date)
             return dateDifferenceInMinutes(from: .now, to: graphData[Int(idx)].value(forKeyPath: "date") as! Date)
         case .Y:
             return graphData[Int(idx)].value(forKeyPath: "changePercent")

@@ -93,7 +93,7 @@ class StockTableCell: UITableViewCell {
             textColor = UIColor.label
             backgroundColor = UIColor.clear
         }
-        self.change.text = String(format: "%.2f", double)
+        self.change.text = String(format: "%.2f", double) + "%"
         self.change.textColor = textColor
         self.last.text = String(format: "%.2f", symbol.quote?.last ?? 0)
         UIView.animate(withDuration: 1.5, delay: 0, options: [], animations: { [weak self] in
