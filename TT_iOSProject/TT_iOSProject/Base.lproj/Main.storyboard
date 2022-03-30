@@ -15,13 +15,93 @@
                     <view key="view" contentMode="scaleToFill" id="Igo-1F-hcS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Oor-3U-Eje">
+                                <rect key="frame" x="0.0" y="385" width="414" height="511"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailCell" textLabel="OeF-hb-9Pr" detailTextLabel="q1t-6P-D3I" style="IBUITableViewCellStyleValue1" id="DDs-KI-JhL" customClass="DetailStockCell" customModule="TT_iOSProject" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DDs-KI-JhL" id="EYe-mu-1Sy">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OeF-hb-9Pr">
+                                                    <rect key="frame" x="20" y="11" width="33" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q1t-6P-D3I">
+                                                    <rect key="frame" x="311.5" y="11" width="42.5" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChangeCell" textLabel="pmV-vM-Sgn" detailTextLabel="AAS-KI-H6U" style="IBUITableViewCellStyleValue1" id="tji-3z-Pz7" customClass="ChangeDetailCell" customModule="TT_iOSProject" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="93" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tji-3z-Pz7" id="1WT-df-LuR">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pmV-vM-Sgn">
+                                                    <rect key="frame" x="20" y="11" width="33" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AAS-KI-H6U">
+                                                    <rect key="frame" x="311.5" y="11" width="42.5" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XeW-Mv-naf" id="NKT-Xt-PZR"/>
+                                    <outlet property="delegate" destination="XeW-Mv-naf" id="odv-kM-Ckc"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSM-OL-En9" customClass="GraphView" customModule="TT_iOSProject" customModuleProvider="target">
+                                <rect key="frame" x="20" y="44" width="374" height="326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="326" id="Jne-Aw-h5c"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="YIL-bS-HXm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Oor-3U-Eje" firstAttribute="leading" secondItem="Igo-1F-hcS" secondAttribute="leading" id="DVm-vw-SDs"/>
+                            <constraint firstAttribute="bottom" secondItem="Oor-3U-Eje" secondAttribute="bottom" id="Mpj-7I-3ze"/>
+                            <constraint firstItem="zSM-OL-En9" firstAttribute="top" secondItem="YIL-bS-HXm" secondAttribute="top" id="Z5j-aj-D3g"/>
+                            <constraint firstItem="Oor-3U-Eje" firstAttribute="top" secondItem="zSM-OL-En9" secondAttribute="bottom" constant="15" id="alc-1C-CCb"/>
+                            <constraint firstItem="zSM-OL-En9" firstAttribute="centerX" secondItem="Oor-3U-Eje" secondAttribute="centerX" id="dIz-YH-hbJ"/>
+                            <constraint firstItem="zSM-OL-En9" firstAttribute="leading" secondItem="Igo-1F-hcS" secondAttribute="leadingMargin" id="ov2-jl-9KE"/>
+                            <constraint firstAttribute="trailing" secondItem="Oor-3U-Eje" secondAttribute="trailing" id="qxp-1V-E9I"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="graphView" destination="zSM-OL-En9" id="r3a-rT-ib5"/>
+                        <outlet property="tableView" destination="Oor-3U-Eje" id="5a6-t7-n87"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRe-CS-nxq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2883" y="110"/>
+            <point key="canvasLocation" x="2882.608695652174" y="109.82142857142857"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Nag-Z4-N4u">

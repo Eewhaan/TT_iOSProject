@@ -4,8 +4,9 @@
 //
 //  Created by Ivan Pavic on 13.3.22..
 //
-
+import CoreData
 import UIKit
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,7 +16,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
-                
+            }
+            for symbol in symbolList {
+                guard let newDate = symbol.quote?.dateTime, let newChangePercent = symbol.quote?.changePercent else { return }
+                let name = symbol.name
+                DispatchQueue.main.async { [weak self] in
+                    self?.saveGraphData(name: name, date: newDate, changePercent: newChangePercent)
+                }
             }
         }
     }
@@ -63,23 +70,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StockCell", for: indexPath) as? StockTableCell else { return UITableViewCell() }
         cell.loadSetup()
-        let double = (sortedSymbolList[indexPath.row].quote?.changePercent ?? 1 - 1)
-        let changeString = String(format: "%.2f", double)
-        let last = sortedSymbolList[indexPath.row].quote?.last ?? 0
-        let lastString = String(format: "%.2f", last)
-        var textColor = UIColor()
-        var backgroundColor = UIColor()
-        if double > 0 {
-            textColor = UIColor.systemGreen
-            backgroundColor = UIColor.systemGreen
-        } else if double < 0 {
-            textColor = UIColor.systemRed
-            backgroundColor = UIColor.systemRed
-        } else {
-            textColor = UIColor.label
-            backgroundColor = UIColor.clear
-        }
-        cell.configure(name: sortedSymbolList[indexPath.row].name, change: changeString, last: lastString, textColor: textColor, backgroundColor: backgroundColor.cgColor)
+        cell.configure(symbol: sortedSymbolList[indexPath.row])
         return cell
     }
     
@@ -95,6 +86,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             tableView.deleteRows(at: [indexPath], with: .right)
         }
     }
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         60
     }
@@ -107,9 +100,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return header
     }
     
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
     }
+    
     
     @objc func autoReloadData() {
         if refreshTime > 29 {
@@ -118,8 +113,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         reloadData()
         refreshTime = TimeInterval.random(in: refreshTime...30)
         refreshTime = TimeInterval.random(in: (refreshTime * 0.8)...(refreshTime * 1.2))
-
     }
+    
     
     @objc func reloadData() {
         DataService.shared.getSymbols{ symbols in
@@ -132,6 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+    
     
     func sortSymbols() {
         switch clickCounter {
@@ -146,17 +142,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    
     func sortByNameAscending(_ items: [Symbol]) -> [Symbol] {
         items.sorted { itemA, itemB in
             itemA.name < itemB.name
         }
     }
     
+    
     func sortByNameDescending(_ items: [Symbol]) -> [Symbol] {
         items.sorted { itemA, itemB in
             itemA.name > itemB.name
         }
     }
+    
     
     @objc func sortTapped(_ sender: UIButton) {
         clickCounter += 1
@@ -168,5 +167,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         UserDefaults.standard.set(clickCounter, forKey: "Sort")
     }
     
+    // since app doesn't have access to real stock market sever we mimic change traffic by saving everything to Core Data
+    func saveGraphData(name: String, date: Date, changePercent: Double) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "Stock", in: managedContext) else { return }
+        
+        let stock = NSManagedObject(entity: entity, insertInto: managedContext)
+        stock.setValue(date, forKeyPath: "date")
+        stock.setValue(changePercent, forKeyPath: "changePercent")
+        stock.setValue(name, forKeyPath: "name")
+
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Couldn't save. \(error), \(error.userInfo)")
+        }
+    }
 
 }
